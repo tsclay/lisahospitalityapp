@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "CRUD app for hotel entities",
   "main": "index.js",
+  "engines": {
+    "node": "14.1.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
