@@ -1,10 +1,16 @@
 //==================================================
-// Require stack
+// NPM pkgs
 const express = require('express')
 const methodOverride = require('method-override')
 const mongoose = require('mongoose')
 const session = require('express-session')
 require('dotenv').config()
+
+//==================================================
+// Controllers
+const guestController = require('./controllers/main')
+const sessionController = require('./controllers/session')
+const userController = require('./controllers/user')
 
 //==================================================
 // Configure PORT and MONGODB_URI
@@ -33,10 +39,16 @@ const app = express()
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static('public'))
 app.use(methodOverride('_method'))
-
-app.get('/', (req, res) => {
-  res.send('Hello world!')
-})
+app.use(
+  session({
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: false
+  })
+)
+app.use('/sessions', sessionController)
+app.use('/users', userController)
+app.use('/guests', guestController)
 
 //==================================================
 // Open server PORT for app
