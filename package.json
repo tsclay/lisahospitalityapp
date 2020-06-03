@@ -2,7 +2,7 @@
   "name": "lisa",
   "version": "1.0.0",
   "description": "CRUD app for hotel entities",
-  "main": "index.js",
+  "main": "server.js",
   "engines": {
     "node": "14.1.0"
   },
