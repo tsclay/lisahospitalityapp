@@ -14,6 +14,14 @@ main.get('/', (req, res) => {
   res.render('app/index.ejs')
 })
 
+main.get('/new', (req, res) => {
+  res.render('app/new.ejs')
+})
+
+main.get('/:id/edit', (req, res) => {
+  res.render('app/edit.ejs')
+})
+
 main.get('/:id', (req, res) => {
   res.render('app/show.ejs')
 })
