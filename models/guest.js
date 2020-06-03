@@ -4,10 +4,10 @@ const { Schema } = mongoose
 
 const guestSchema = new Schema({
   name: { type: String, required: true },
-  lastStay: { type: String, required: true },
+  recentStay: { type: String, required: true },
   reservationID: Number,
   accomodation: {
-    property: { type: String, required: true },
+    property: String || null,
     roomNumber: { type: Number, required: true }
   }
 })
