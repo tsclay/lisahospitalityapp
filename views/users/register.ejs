@@ -1,9 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <%- include('../partials/head.ejs') %>
-  </head>
-  <body>
-    <h1>Register</h1>
-  </body>
-</html>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="card w-75 mx-auto">
+        <div class="card-body">
+          <h5 class="card-title text-center">Sign Up</h5>
+          <form action="/login" method="POST">
+            <fieldset class="form-group">
+              <label for="display-name">Name</label>
+              <input
+                class="form-control"
+                type="text"
+                name="name"
+                placeholder="Name that will be displayed in the app"
+                id="display-name"
+              />
+            </fieldset>
+            <fieldset class="form-group">
+              <label for="user-email">Email</label>
+              <input
+                class="form-control"
+                type="text"
+                name="email"
+                placeholder="Email address"
+                id="user-email"
+              />
+            </fieldset>
+            <fieldset class="form-group">
+              <label for="username-login">Username</label>
+              <input
+                class="form-control"
+                type="text"
+                name="username"
+                placeholder="Username"
+                id="username-login"
+              />
+            </fieldset>
+            <fieldset class="form-group">
+              <label for="password-login">Password</label>
+              <input
+                class="form-control"
+                type="text"
+                name="password"
+                id="password-login"
+                placeholder="Password"
+              />
+            </fieldset>
+            <button class="btn btn-primary" type="submit">Submit</button>
+          </form>
+          <p class="card-text mt-4">
+            <span>Have an account?</span
+            ><span><a class="ml-2" href="/login">Login</a></span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <img src="/img/longhall.jpg" class="img-fluid" alt="Welcome to Lisa" />
+    </div>
+  </div>
+</div>

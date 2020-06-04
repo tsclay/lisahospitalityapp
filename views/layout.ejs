@@ -4,7 +4,7 @@
     <%- include('./partials/head.ejs') %>
   </head>
   <body>
-    <%- include('./partials/nav.ejs') %>
+    <% if (navOn) { %> <%- include('./partials/nav.ejs') %> <% } %>
     <div class="container my-4">
       <%- body %>
     </div>
