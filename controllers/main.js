@@ -1,5 +1,5 @@
 const express = require('express')
-const Guest = require('../models/guest')
+const Guest = require('../models/Guest')
 const seed = require('../models/seed')
 
 const isAuthenticated = () => {
