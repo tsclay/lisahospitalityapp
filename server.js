@@ -22,7 +22,7 @@ const MONGODB_TEST = 'mongodb://localhost:27017/lisa_local'
 //==================================================
 // Connect to MongoDB
 mongoose.connect(
-  MONGODB_TEST,
+  MONGODB_URI,
   {
     useCreateIndex: true,
     useFindAndModify: false,
@@ -30,8 +30,8 @@ mongoose.connect(
     useNewUrlParser: true
   },
   () => {
-    console.log(`Connected to MONGODB @ ${MONGODB_TEST}`)
-    // console.log(`Connected to MONGODB @ ${MONGODB_URI}`)
+    // console.log(`Connected to MONGODB @ ${MONGODB_TEST}`)
+    console.log(`Connected to MONGODB @ ${MONGODB_URI}`)
   }
 )
 
