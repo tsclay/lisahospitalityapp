@@ -13,7 +13,7 @@ const main = express.Router()
 
 main.get('/seed', (req, res) => {
   Guest.insertMany(seed, (error, addedSeed) => {
-    res.send(addedSeed)
+    return error ? res.send(error) : res.send(addedSeed)
   })
 })
 
