@@ -2,7 +2,7 @@ const express = require('express')
 const Guest = require('../models/Guest')
 const seed = require('../models/seed')
 
-const isAuthenticated = () => {
+const isAuthenticated = (req, res, next) => {
   if (req.session.currentUser) {
     return next()
   }
@@ -13,7 +13,7 @@ const main = express.Router()
 
 main.get('/seed', (req, res) => {
   Guest.insertMany(seed, (error, addedSeed) => {
-    return error ? res.send(error) : res.send(addedSeed)
+    return error ? res.send(error) : res.redirect('app/index.ejs')
   })
 })
 
