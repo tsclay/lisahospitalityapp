@@ -49,7 +49,7 @@ app.use(
   })
 )
 app.use('/sessions', sessionController)
-app.use('/users', userController)
+app.use(userController)
 app.use('/app', guestController)
 
 //==================================================

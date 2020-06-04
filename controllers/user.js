@@ -4,11 +4,15 @@ const User = require('../models/user')
 
 const user = express.Router()
 
-user.get('/', (req, res) => {
-  res.render('users/new.ejs')
+user.get('/register', (req, res) => {
+  res.render('users/register.ejs')
 })
 
-user.post('/', (req, res) => {
+user.get('/login', (req, res) => {
+  res.render('users/login.ejs')
+})
+
+user.post('/register', (req, res) => {
   res.redirect('/app')
 })
 

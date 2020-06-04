@@ -4,7 +4,7 @@
     <%- include('../partials/head.ejs') %>
   </head>
   <body>
-    <h1>Index page</h1>
+    <%- include('../partials/nav.ejs') %>
     <button onclick="window.location.href='/app/new'">ADD</button>
     <div class="container">
       <% for (let entry of entries) { %>

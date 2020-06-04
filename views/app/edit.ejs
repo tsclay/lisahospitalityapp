@@ -4,6 +4,7 @@
     <%- include('../partials/head.ejs') %>
   </head>
   <body>
+    <%- include('../partials/nav.ejs') %>
     <h1>Edit page</h1>
     <div class="container">
       <form action="/app/<%= foundGuest.id %>?_method=PUT" method="POST">
