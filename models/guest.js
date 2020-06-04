@@ -3,13 +3,17 @@ const mongoose = require('mongoose')
 const { Schema } = mongoose
 
 const guestSchema = new Schema({
-  name: { type: String, required: true },
+  name: {
+    firstName: { type: String, required: true },
+    lastName: { type: String, required: true }
+  },
   recentStay: { type: String, required: true },
-  reservationID: Number,
+  reservationID: String,
   accomodation: {
     property: String || null,
-    roomNumber: { type: Number, required: true }
-  }
+    roomNumber: { type: String, required: true }
+  },
+  comments: { type: String, required: true }
 })
 
 const Guest = mongoose.model('Guest', guestSchema)

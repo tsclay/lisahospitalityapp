@@ -5,5 +5,28 @@
   </head>
   <body>
     <h1>Show page</h1>
+    <div class="container">
+      <div class="d-flex flex-wrap flex-column justify-content-start">
+        <p><%= foundGuest.name.lastName %>, <%= foundGuest.name.firstName %></p>
+        <p>Last stay: <%= foundGuest.recentStay %></p>
+        <p>Reservation ID: <%= foundGuest.reservationID %></p>
+      </div>
+      <div class="d-flex flex-wrap flex-column justify-content-start">
+        <p>
+          Stayed in room <%= foundGuest.accomodation.roomNumber %> at <%=
+          foundGuest.accomodation.property %>
+        </p>
+        <p><%= foundGuest.comments %></p>
+      </div>
+      <button
+        class="btn btn-primary"
+        onclick="window.location.href='/app/<%= foundGuest.id %>/edit'"
+      >
+        EDIT
+      </button>
+      <button class="btn btn-primary" onclick="window.location.href='/app'">
+        RETURN
+      </button>
+    </div>
   </body>
 </html>

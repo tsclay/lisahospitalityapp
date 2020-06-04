@@ -16,11 +16,12 @@ const userController = require('./controllers/user')
 // Configure PORT and MONGODB_URI
 const PORT = process.env.PORT || 3333
 const { MONGODB_URI } = process.env
+const MONGODB_TEST = 'mongodb://localhost:27017/lisa_local'
 
 //==================================================
 // Connect to MongoDB
 mongoose.connect(
-  MONGODB_URI,
+  MONGODB_TEST,
   {
     useCreateIndex: true,
     useFindAndModify: false,
@@ -28,7 +29,8 @@ mongoose.connect(
     useNewUrlParser: true
   },
   () => {
-    console.log(`Connected to MONGODB @ ${MONGODB_URI}`)
+    console.log(`Connected to MONGODB @ ${MONGODB_TEST}`)
+    // console.log(`Connected to MONGODB @ ${MONGODB_URI}`)
   }
 )
 
@@ -48,7 +50,7 @@ app.use(
 )
 app.use('/sessions', sessionController)
 app.use('/users', userController)
-app.use('/guests', guestController)
+app.use('/app', guestController)
 
 //==================================================
 // Open server PORT for app
