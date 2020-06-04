@@ -1,121 +1,112 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <%- include('../partials/head.ejs') %>
-  </head>
-  <body>
-    <%- include('../partials/nav.ejs') %>
-    <h1>Edit page</h1>
-    <div class="container">
-      <form action="/app/<%= foundGuest.id %>?_method=PUT" method="POST">
-        <div class="form-group">
-          <div class="row">
-            <div class="col">
-              <div class="form-group">
-                <label for="reservation-id">RESERVATION ID</label>
-                <input
-                  class="form-control"
-                  type="text"
-                  name="reservationID"
-                  id="reservation-id"
-                  value="<%= foundGuest.reservationID %>"
-                />
-              </div>
-            </div>
-            <div class="col">
-              <label for="last-name">LAST NAME</label>
-              <input
-                class="form-control"
-                type="text"
-                name="name[lastName]"
-                id="last-name"
-                value="<%= foundGuest.name.lastName %>"
-              />
-            </div>
-            <div class="col">
-              <div class="form-group">
-                <label for="first-name">FIRST NAME</label>
-                <input
-                  class="form-control"
-                  type="text"
-                  name="name[firstName]"
-                  id="first-name"
-                  value="<%= foundGuest.name.firstName %>"
-                />
-              </div>
-            </div>
-            <div class="col">
-              <div class="form-group">
-                <label for="recent-stay">RECENT STAY</label>
-                <input
-                  class="form-control"
-                  type="date"
-                  name="recentStay"
-                  id="recent-stay"
-                  value="<%= foundGuest.recentStay %>"
-                />
-              </div>
-            </div>
+<h1>Edit page</h1>
+<div class="container">
+  <form action="/app/<%= foundGuest.id %>?_method=PUT" method="POST">
+    <div class="form-group">
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="reservation-id">RESERVATION ID</label>
+            <input
+              class="form-control"
+              type="text"
+              name="reservationID"
+              id="reservation-id"
+              value="<%= foundGuest.reservationID %>"
+            />
           </div>
         </div>
-        <div class="form-group">
-          <div class="row">
-            <div class="col">
-              <div class="form-group">
-                <label for="accomodation-property">PROPERTY</label>
-                <input
-                  type="text"
-                  name="accomodation[property]"
-                  id="accomodation-property"
-                  class="form-control"
-                  value="<%= foundGuest.accomodation.property %>"
-                />
-              </div>
-            </div>
-            <div class="col">
-              <div class="form-group">
-                <label for="accomodation-room">ROOM NUMBER</label>
-                <input
-                  type="number"
-                  name="accomodation[roomNumber]"
-                  id="accomodation-room"
-                  class="form-control"
-                  value="<%= foundGuest.accomodation.roomNumber %>"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="comments">COMMENTS</label>
-          <textarea
-            rows="5"
+        <div class="col">
+          <label for="last-name">LAST NAME</label>
+          <input
             class="form-control"
             type="text"
-            name="comments"
-            id="comments"
-          >
+            name="name[lastName]"
+            id="last-name"
+            value="<%= foundGuest.name.lastName %>"
+          />
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label for="first-name">FIRST NAME</label>
+            <input
+              class="form-control"
+              type="text"
+              name="name[firstName]"
+              id="first-name"
+              value="<%= foundGuest.name.firstName %>"
+            />
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label for="recent-stay">RECENT STAY</label>
+            <input
+              class="form-control"
+              type="date"
+              name="recentStay"
+              id="recent-stay"
+              value="<%= foundGuest.recentStay %>"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="accomodation-property">PROPERTY</label>
+            <input
+              type="text"
+              name="accomodation[property]"
+              id="accomodation-property"
+              class="form-control"
+              value="<%= foundGuest.accomodation.property %>"
+            />
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label for="accomodation-room">ROOM NUMBER</label>
+            <input
+              type="number"
+              name="accomodation[roomNumber]"
+              id="accomodation-room"
+              class="form-control"
+              value="<%= foundGuest.accomodation.roomNumber %>"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="comments">COMMENTS</label>
+      <textarea
+        rows="5"
+        class="form-control"
+        type="text"
+        name="comments"
+        id="comments"
+      >
 <%= foundGuest.comments %>
         </textarea
-          >
-        </div>
-        <button class="btn btn-primary" type="submit">ENTER</button>
-        <button
-          type="button"
-          class="btn btn-primary"
-          onclick="window.location.href='/app'"
-        >
-          RETURN
-        </button>
-      </form>
-      <form
-        action="/app/<%= foundGuest.id %>?_method=DELETE"
-        class="form-group"
-        method="POST"
       >
-        <button class="btn btn-danger" type="submit">DELETE</button>
-      </form>
     </div>
-  </body>
-</html>
+    <button class="btn btn-primary" type="submit">ENTER</button>
+    <button
+      type="button"
+      class="btn btn-primary"
+      onclick="window.location.href='/app'"
+    >
+      RETURN
+    </button>
+  </form>
+  <form
+    action="/app/<%= foundGuest.id %>?_method=DELETE"
+    class="form-group"
+    method="POST"
+  >
+    <button class="btn btn-danger" type="submit">DELETE</button>
+  </form>
+</div>

@@ -1,19 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <%- include('../partials/head.ejs') %>
-  </head>
-  <body>
-    <%- include('../partials/nav.ejs') %>
-    <button onclick="window.location.href='/app/new'">ADD</button>
-    <div class="container">
-      <% for (let entry of entries) { %>
-      <div>
-        <a href="/app/<%= entry.id %>"
-          ><%= entry.name.lastName %>, <%= entry.name.firstName %></a
-        >
-      </div>
-      <% } %>
-    </div>
-  </body>
-</html>
+<button onclick="window.location.href='/app/new'">ADD</button>
+<div class="container">
+  <% for (let entry of entries) { %>
+  <div>
+    <a href="/app/<%= entry.id %>"
+      ><%= entry.name.lastName %>, <%= entry.name.firstName %></a
+    >
+  </div>
+  <% } %>
+</div>

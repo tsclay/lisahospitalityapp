@@ -1,6 +1,7 @@
 //==================================================
 // NPM pkgs
 const express = require('express')
+const expressLayouts = require('express-ejs-layouts')
 const methodOverride = require('method-override')
 const mongoose = require('mongoose')
 const session = require('express-session')
@@ -37,6 +38,10 @@ mongoose.connect(
 //==================================================
 // Create Express app and set middleware
 const app = express()
+
+// Set template engine
+app.use(expressLayouts)
+app.set('view engine', 'ejs')
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static('public'))
