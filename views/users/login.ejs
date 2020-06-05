@@ -4,13 +4,13 @@
     <h5 class="card-title text-center">Login</h5>
     <form action="/login" method="POST">
       <fieldset class="form-group">
-        <label for="username-login">Username</label>
+        <label for="email-login">Email</label>
         <input
           class="form-control"
           type="text"
-          name="username"
-          placeholder="Username"
-          id="username-login"
+          name="email"
+          placeholder="email"
+          id="email-login"
         />
       </fieldset>
       <fieldset class="form-group">
@@ -23,9 +23,11 @@
           placeholder="Password"
         />
       </fieldset>
-      <button class="btn btn-primary" type="submit">LOGIN</button>
+      <button class="btn btn-primary d-block mx-auto" type="submit">
+        LOGIN
+      </button>
     </form>
-    <p class="card-text mt-4">
+    <p class="card-text text-center mt-4">
       <span>Need an account?</span
       ><span><a class="ml-2" href="/register">Register</a></span>
     </p>

@@ -5,16 +5,28 @@
         <div class="card-body">
           <h5 class="card-title text-center">Sign Up</h5>
           <form action="/login" method="POST">
-            <fieldset class="form-group">
-              <label for="display-name">Name</label>
-              <input
-                class="form-control"
-                type="text"
-                name="name"
-                placeholder="Name that will be displayed in the app"
-                id="display-name"
-              />
-            </fieldset>
+            <div class="d-flex flex-row justify-content-between">
+              <fieldset class="form-group">
+                <label for="first-name">First Name</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  name="name[firstName]"
+                  placeholder="First Name"
+                  id="first-name"
+                />
+              </fieldset>
+              <fieldset class="form-group">
+                <label for="last-name">Last Name</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  name="name[lastName]"
+                  placeholder="Last Name"
+                  id="last-name"
+                />
+              </fieldset>
+            </div>
             <fieldset class="form-group">
               <label for="user-email">Email</label>
               <input
@@ -26,28 +38,30 @@
               />
             </fieldset>
             <fieldset class="form-group">
-              <label for="username-login">Username</label>
-              <input
-                class="form-control"
-                type="text"
-                name="username"
-                placeholder="Username"
-                id="username-login"
-              />
-            </fieldset>
-            <fieldset class="form-group">
               <label for="password-login">Password</label>
               <input
                 class="form-control"
-                type="text"
+                type="password"
                 name="password"
                 id="password-login"
                 placeholder="Password"
               />
             </fieldset>
-            <button class="btn btn-primary" type="submit">Submit</button>
+            <fieldset class="form-group">
+              <label for="confirm-password">Confirm Password</label>
+              <input
+                class="form-control"
+                type="password"
+                name="confirmPassword"
+                id="confirm-password"
+                placeholder="Confirm Password"
+              />
+            </fieldset>
+            <button class="btn btn-primary d-block mx-auto" type="submit">
+              Create Account
+            </button>
           </form>
-          <p class="card-text mt-4">
+          <p class="card-text text-center mt-4">
             <span>Have an account?</span
             ><span><a class="ml-2" href="/login">Login</a></span>
           </p>
