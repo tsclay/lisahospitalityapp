@@ -53,8 +53,8 @@ app.use(
     saveUninitialized: false
   })
 )
-app.use('/sessions', sessionController)
-app.use(userController)
+app.use('/login', sessionController)
+app.use('/register', userController)
 app.use('/app', guestController)
 
 //==================================================
