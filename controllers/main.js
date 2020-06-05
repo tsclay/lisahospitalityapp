@@ -6,7 +6,7 @@ const isAuthenticated = (req, res, next) => {
   if (req.session.currentUser) {
     return next()
   }
-  return res.redirect('/sessions/new')
+  return res.redirect('/login')
 }
 
 const main = express.Router()
@@ -17,41 +17,56 @@ main.get('/seed', (req, res) => {
   })
 })
 
-main.get('/', (req, res) => {
+main.get('/', isAuthenticated, (req, res) => {
   Guest.find({}, (error, entries) => {
-    res.render('app/index.ejs', { entries })
+    res.render('app/index.ejs', {
+      entries,
+      navOn: true,
+      currentUser: req.session.currentUser
+    })
   })
 })
 
-main.get('/new', (req, res) => {
-  res.render('app/new.ejs')
+main.get('/new', isAuthenticated, (req, res) => {
+  res.render('app/new.ejs', {
+    navOn: true,
+    currentUser: req.session.currentUser
+  })
 })
 
-main.get('/:id/edit', (req, res) => {
+main.get('/:id/edit', isAuthenticated, (req, res) => {
   Guest.findById(req.params.id, (error, foundGuest) => {
-    res.render('app/edit.ejs', { foundGuest })
+    res.render('app/edit.ejs', {
+      foundGuest,
+      navOn: true,
+      currentUser: req.session.currentUser
+    })
   })
 })
 
-main.get('/:id', (req, res) => {
+main.get('/:id', isAuthenticated, (req, res) => {
   Guest.findById(req.params.id, (error, foundGuest) => {
-    res.render('app/show.ejs', { foundGuest })
+    res.render('app/show.ejs', {
+      foundGuest,
+      navOn: true,
+      currentUser: req.session.currentUser
+    })
   })
 })
 
-main.post('/', (req, res) => {
+main.post('/', isAuthenticated, (req, res) => {
   Guest.create(req.body, (error, newEntry) => {
     res.redirect('/app')
   })
 })
 
-main.put('/:id', (req, res) => {
+main.put('/:id', isAuthenticated, (req, res) => {
   Guest.findByIdAndUpdate(req.params.id, req.body, (error, updatedGuest) => {
     res.redirect(`/app/${req.params.id}`)
   })
 })
 
-main.delete('/:id', (req, res) => {
+main.delete('/:id', isAuthenticated, (req, res) => {
   Guest.findByIdAndDelete(req.params.id, (error, deleted) => {
     res.redirect('/app')
   })

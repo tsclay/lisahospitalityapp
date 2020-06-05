@@ -4,16 +4,15 @@ const User = require('../models/User')
 
 const user = express.Router()
 
-user.get('/register', (req, res) => {
+user.get('/', (req, res) => {
   res.render('users/register.ejs', { navOn: false })
 })
 
-user.get('/login', (req, res) => {
-  res.render('users/login.ejs', { navOn: false })
-})
-
-user.post('/register', (req, res) => {
-  res.redirect('/app')
+user.post('/', (req, res) => {
+  req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10))
+  User.create(req.body, (error, newUser) => {
+    return error ? console.log(error) : res.send(newUser)
+  })
 })
 
 module.exports = user
