@@ -1,10 +1,70 @@
-<button onclick="window.location.href='/app/new'">ADD</button>
+<button class="btn btn-primary" onclick="window.location.href='/app/new'">
+  ADD
+</button>
 <div class="container">
-  <% for (let entry of entries) { %>
-  <div>
-    <a href="/app/<%= entry.id %>"
-      ><%= entry.name.lastName %>, <%= entry.name.firstName %></a
-    >
-  </div>
-  <% } %>
+  <ul class="list-group list-group-flush">
+    <% for (let entry of entries) { %>
+    <li class="list-group-item">
+      <a href="/app/<%= entry.id %>"
+        ><%= entry.name.lastName %>, <%= entry.name.firstName %></a
+      >
+      <div class="btn-group">
+        <button
+          type="button"
+          class="btn btn-dark d-none"
+          onclick="window.location.href='/app/<%= entry.id %>'"
+        >
+          view
+        </button>
+        <button
+          type="button"
+          class="btn btn-dark d-none"
+          onclick="window.location.href='/app/<%= entry.id %>/edit'"
+        >
+          edit
+        </button>
+        <button
+          form="<%= entry.id %>"
+          type="submit"
+          class="btn btn-dark d-none"
+        >
+          delete
+        </button>
+        <form
+          action="/app/<%= entry.id %>?_method=DELETE"
+          method="POST"
+          id="<%= entry.id %>"
+        ></form>
+      </div>
+    </li>
+    <% } %>
+  </ul>
 </div>
+<script>
+  $('li').on('click', (event) => {
+    const selectedItem = $(event.currentTarget)
+    const siblings = selectedItem.siblings('li')
+    const siblingsButtons = siblings.find('button')
+
+    if (selectedItem.hasClass('active')) {
+      selectedItem.removeClass('active')
+      selectedItem.find('button').addClass('d-none')
+      selectedItem.find('a').removeAttr('style')
+    } else if (!selectedItem.hasClass('active')) {
+      siblings.removeClass('active')
+      siblings.children().removeAttr('style')
+
+      siblingsButtons.addClass('d-none')
+
+      selectedItem.addClass('active')
+      selectedItem.find('button').removeClass('d-none')
+      selectedItem.find('a').css('color', 'whitesmoke')
+    }
+  })
+</script>
+
+<!-- <div class="btn-group" role="group" aria-label="Basic example">
+  <button type="button" class="btn btn-secondary">Left</button>
+  <button type="button" class="btn btn-secondary">Middle</button>
+  <button type="button" class="btn btn-secondary">Right</button>
+</div> -->
