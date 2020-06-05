@@ -5,7 +5,14 @@ const expressLayouts = require('express-ejs-layouts')
 const methodOverride = require('method-override')
 const mongoose = require('mongoose')
 const session = require('express-session')
-// require('dotenv').config()
+
+//==================================================
+// Middleware
+const isAuthenticated = require('./middleware/isAuthenticated')
+
+//==================================================
+// Environment variables for development
+require('dotenv').config()
 
 //==================================================
 // Controllers
@@ -56,6 +63,14 @@ app.use(
 app.use('/login', sessionController)
 app.use('/register', userController)
 app.use('/app', guestController)
+
+app.get('/', isAuthenticated, (req, res) => {
+  if (!req.session.currentUser) {
+    res.redirect('/login')
+  } else {
+    res.redirect('/app')
+  }
+})
 
 //==================================================
 // Open server PORT for app

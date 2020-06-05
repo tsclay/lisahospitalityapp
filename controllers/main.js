@@ -2,12 +2,7 @@ const express = require('express')
 const Guest = require('../models/Guest')
 const seed = require('../models/seed')
 
-const isAuthenticated = (req, res, next) => {
-  if (req.session.currentUser) {
-    return next()
-  }
-  return res.redirect('/login')
-}
+const isAuthenticated = require('../middleware/isAuthenticated')
 
 const main = express.Router()
 
