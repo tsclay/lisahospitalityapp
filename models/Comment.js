@@ -7,7 +7,7 @@ const commentSchema = new Schema({
     name: String,
     ID: Number
   },
-  body: { type: String, required: true },
+  content: { type: String, required: true },
   createdAt: { type: Date, default: Date.now.toLocaleString },
   edited: { type: Boolean, default: false },
   updatedAt: { type: Date, default: null }
