@@ -24,7 +24,6 @@ const userController = require('./controllers/user')
 // Configure PORT and MONGODB_URI
 const PORT = process.env.PORT || 3333
 const { MONGODB_URI } = process.env
-const MONGODB_TEST = 'mongodb://localhost:27017/lisa_local'
 
 //==================================================
 // Connect to MongoDB
@@ -37,7 +36,6 @@ mongoose.connect(
     useNewUrlParser: true
   },
   () => {
-    // console.log(`Connected to MONGODB @ ${MONGODB_TEST}`)
     console.log(`Connected to MONGODB @ ${MONGODB_URI}`)
   }
 )
@@ -64,6 +62,8 @@ app.use('/login', sessionController)
 app.use('/register', userController)
 app.use('/app', guestController)
 
+//==================================================
+// Set the redirect to login or user session when loading main URL
 app.get('/', isAuthenticated, (req, res) => {
   if (!req.session.currentUser) {
     res.redirect('/login')
