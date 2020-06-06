@@ -4,43 +4,52 @@
 <div class="container">
   <ul class="list-group list-group-flush">
     <% for (let entry of entries) { %>
-    <li class="list-group-item">
-      <a href="/app/<%= entry.id %>"
+    <li
+      class="list-group-item"
+      role="button"
+      data-toggle="collapse"
+      aria-expanded="false"
+      aria-controls="entry-<%= entry.id %>"
+    >
+      <a href="#entry-<%= entry.id %>"
         ><%= entry.name.lastName %>, <%= entry.name.firstName %></a
       >
-      <div class="btn-group">
-        <button
-          type="button"
-          class="btn btn-dark d-none"
-          onclick="window.location.href='/app/<%= entry.id %>'"
-        >
-          view
-        </button>
-        <button
-          type="button"
-          class="btn btn-dark d-none"
-          onclick="window.location.href='/app/<%= entry.id %>/edit'"
-        >
-          edit
-        </button>
-        <button
-          form="<%= entry.id %>"
-          type="submit"
-          class="btn btn-dark d-none"
-        >
-          delete
-        </button>
-        <form
-          action="/app/<%= entry.id %>?_method=DELETE"
-          method="POST"
-          id="<%= entry.id %>"
-        ></form>
+      <div class="collapse" id="entry-<%= entry.id %>">
+        <div class="btn-group">
+          <button
+            type="button"
+            class="btn btn-outline-secondary btn-sm"
+            onclick="window.location.href='/app/<%= entry.id %>'"
+          >
+            view
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-secondary btn-sm"
+            onclick="window.location.href='/app/<%= entry.id %>/edit'"
+          >
+            edit
+          </button>
+          <button
+            form="<%= entry.id %>"
+            type="submit"
+            class="btn btn-outline-secondary btn-sm"
+          >
+            delete
+          </button>
+          <form
+            action="/app/<%= entry.id %>?_method=DELETE"
+            method="POST"
+            id="<%= entry.id %>"
+          ></form>
+        </div>
       </div>
     </li>
     <% } %>
   </ul>
 </div>
-<script>
+
+<!-- <script>
   $('li').on('click', (event) => {
     const selectedItem = $(event.currentTarget)
     const siblings = selectedItem.siblings('li')
@@ -61,7 +70,7 @@
       selectedItem.find('a').css('color', 'whitesmoke')
     }
   })
-</script>
+</script> -->
 
 <!-- <div class="btn-group" role="group" aria-label="Basic example">
   <button type="button" class="btn btn-secondary">Left</button>
