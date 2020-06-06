@@ -1,5 +1,5 @@
 <button class="btn btn-primary" onclick="window.location.href='/app/new'">
-  ADD
+  <i class="far fa-plus-square fa-2x"></i>
 </button>
 <div class="container">
   <ul class="list-group list-group-flush">
@@ -11,7 +11,7 @@
       aria-expanded="false"
       aria-controls="entry-<%= entry.id %>"
     >
-      <a href="#entry-<%= entry.id %>"
+      <a class="text-decoration-none text-reset"
         ><%= entry.name.lastName %>, <%= entry.name.firstName %></a
       >
       <div class="collapse" id="entry-<%= entry.id %>">
@@ -21,21 +21,21 @@
             class="btn btn-outline-secondary btn-sm"
             onclick="window.location.href='/app/<%= entry.id %>'"
           >
-            view
+            <i class="far fa-eye"></i>
           </button>
           <button
             type="button"
             class="btn btn-outline-secondary btn-sm"
             onclick="window.location.href='/app/<%= entry.id %>/edit'"
           >
-            edit
+            <i class="far fa-edit"></i>
           </button>
           <button
             form="<%= entry.id %>"
             type="submit"
             class="btn btn-outline-secondary btn-sm"
           >
-            delete
+            <i class="far fa-trash-alt"></i>
           </button>
           <form
             action="/app/<%= entry.id %>?_method=DELETE"
@@ -48,32 +48,3 @@
     <% } %>
   </ul>
 </div>
-
-<!-- <script>
-  $('li').on('click', (event) => {
-    const selectedItem = $(event.currentTarget)
-    const siblings = selectedItem.siblings('li')
-    const siblingsButtons = siblings.find('button')
-
-    if (selectedItem.hasClass('active')) {
-      selectedItem.removeClass('active')
-      selectedItem.find('button').addClass('d-none')
-      selectedItem.find('a').removeAttr('style')
-    } else if (!selectedItem.hasClass('active')) {
-      siblings.removeClass('active')
-      siblings.children().removeAttr('style')
-
-      siblingsButtons.addClass('d-none')
-
-      selectedItem.addClass('active')
-      selectedItem.find('button').removeClass('d-none')
-      selectedItem.find('a').css('color', 'whitesmoke')
-    }
-  })
-</script> -->
-
-<!-- <div class="btn-group" role="group" aria-label="Basic example">
-  <button type="button" class="btn btn-secondary">Left</button>
-  <button type="button" class="btn btn-secondary">Middle</button>
-  <button type="button" class="btn btn-secondary">Right</button>
-</div> -->
