@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-const Comment = require('./Comment')
 
 const { Schema } = mongoose
 
@@ -14,8 +13,16 @@ const guestSchema = new Schema({
     property: String || null,
     roomNumber: { type: String, required: true }
   },
-  comments: { type: String, required: true }
+  posts: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Post',
+      autopopulate: true
+    }
+  ]
 })
+
+guestSchema.plugin(require('mongoose-autopopulate'))
 
 const Guest = mongoose.model('Guest', guestSchema)
 
