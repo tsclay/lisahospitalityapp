@@ -21,10 +21,13 @@
     RETURN
   </button>
   <div class="mt-5">
-    <% const currentDate = new Date() %> <% currentDate.setHours(0,0,0,0) %>
     <!-- prettier-ignore -->
+    <% const months = ['January',
+    'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September',
+    'October', 'November', 'December'] %> 
+    <% const currentDate = new Date() %> <% currentDate.setHours(0,0,0,0) %>
     <% let testDate = currentDate %> <% testDate.setHours(0,0,0,0) %>
-
+    <!-- prettier-ignore -->
     <% for (let i = 0; i < foundGuest.posts.length; i++) { %>
     <!-- prettier-ignore -->
     <% const postDate = new Date(foundGuest.posts[i].createdAt)%> 
@@ -33,8 +36,11 @@
     <% if (postDate.getTime() !==testDate.getTime()) { %>
     <% if (postDate.getTime() === currentDate.getTime()) { %>
     <div class="text-center">Today</div>
+    <!-- prettier-ignore -->
     <% testDate = postDate %> <% } else { %>
-    <div class="text-center"><%= postDate.toDateString() %></div>
+    <% const postMonth = months[postDate.getMonth()] %> 
+    <% const postDateOfMonth = postDate.getDate() %>
+    <div class="text-center"><%= postMonth %> <%= postDateOfMonth %></div>
     <% testDate = postDate %>
     <!---->
     <% } %>
@@ -60,8 +66,9 @@
           </h6>
           <h6 class="ml-2">
             <small class="text-muted"
-              ><%= new Date(foundGuest.posts[i].createdAt).toLocaleString([], {
-              hour: '2-digit', minute: '2-digit' }).toLowerCase() %></small
+              ><%= new
+              Date(foundGuest.posts[i].createdAt).toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/,
+              "$1$3").toLowerCase() %></small
             >
           </h6>
         </div>
