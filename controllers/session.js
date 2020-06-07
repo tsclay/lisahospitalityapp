@@ -4,11 +4,11 @@ const User = require('../models/User')
 
 const session = express.Router()
 
-session.get('/', (req, res) => {
+session.get('/login', (req, res) => {
   res.render('users/login.ejs', { navOn: false })
 })
 
-session.post('/', (req, res) => {
+session.post('/login', (req, res) => {
   User.findOne({ email: req.body.email }, (error, foundUser) => {
     if (error) {
       res.send(error)
@@ -18,6 +18,12 @@ session.post('/', (req, res) => {
       req.session.currentUser = foundUser
       res.redirect('/app')
     }
+  })
+})
+
+session.delete('/logout', (req, res) => {
+  req.session.destroy(() => {
+    res.redirect('/login')
   })
 })
 
