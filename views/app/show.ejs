@@ -21,7 +21,25 @@
     RETURN
   </button>
   <div class="mt-5">
+    <% const currentDate = new Date() %> <% currentDate.setHours(0,0,0,0) %>
+    <!-- prettier-ignore -->
+    <% let testDate = currentDate %> <% testDate.setHours(0,0,0,0) %>
+
     <% for (let i = 0; i < foundGuest.posts.length; i++) { %>
+    <!-- prettier-ignore -->
+    <% const postDate = new Date(foundGuest.posts[i].createdAt)%> 
+    <% postDate.setHours(0,0,0,0) %>
+    <!-- prettier-ignore -->
+    <% if (postDate.getTime() !==testDate.getTime()) { %>
+    <% if (postDate.getTime() === currentDate.getTime()) { %>
+    <div class="text-center">Today</div>
+    <% testDate = postDate %> <% } else { %>
+    <div class="text-center"><%= postDate.toDateString() %></div>
+    <% testDate = postDate %>
+    <!---->
+    <% } %>
+    <!---->
+    <% } %>
     <div class="card d-flex flex-row pb-3">
       <div style="width: 8%;">
         <svg
