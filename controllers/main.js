@@ -1,5 +1,7 @@
 const express = require('express')
 const Guest = require('../models/Guest')
+const Post = require('../models/Post')
+const User = require('../models/User')
 const seed = require('../models/seed')
 
 const isAuthenticated = require('../middleware/isAuthenticated')
@@ -13,6 +15,7 @@ main.get('/seed', (req, res) => {
 })
 
 main.get('/', isAuthenticated, (req, res) => {
+  console.log(req.session.currentUser)
   Guest.find({}, (error, entries) => {
     res.render('app/index.ejs', {
       entries,
@@ -41,6 +44,7 @@ main.get('/:id/edit', isAuthenticated, (req, res) => {
 
 main.get('/:id', isAuthenticated, (req, res) => {
   Guest.findById(req.params.id, (error, foundGuest) => {
+    console.log(foundGuest)
     res.render('app/show.ejs', {
       foundGuest,
       navOn: true,
@@ -52,6 +56,38 @@ main.get('/:id', isAuthenticated, (req, res) => {
 main.post('/', isAuthenticated, (req, res) => {
   Guest.create(req.body, (error, newEntry) => {
     res.redirect('/app')
+  })
+})
+
+main.post('/:id/newpost', isAuthenticated, (req, res) => {
+  req.body.author = { name: '', id: '' }
+  req.body.author.name = `${req.session.currentUser.name.firstName} ${req.session.currentUser.name.lastName}`
+  req.body.author.id = req.session.currentUser._id
+  console.log('This is req.body:', req.body)
+  // req.body.author.id = req.params.author
+  Post.create(req.body, (error, newPost) => {
+    if (error) {
+      res.send(error)
+    } else {
+      console.log('This is the Post:', newPost)
+      Guest.findByIdAndUpdate(
+        req.params.id,
+        { $push: { posts: newPost.id } },
+        (error, updatedGuest) => {
+          User.findByIdAndUpdate(
+            req.session.currentUser._id,
+            {
+              $push: { posts: newPost.id }
+            },
+            (error, updatedUser) => {
+              return error
+                ? res.send(error)
+                : res.redirect(`/app/${req.params.id}`)
+            }
+          )
+        }
+      )
+    }
   })
 })
 
