@@ -25,7 +25,7 @@
     <% const months = ['January',
     'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September',
     'October', 'November', 'December'] %> 
-    <% const currentDate = new Date() %> <% currentDate.setHours(0,0,0,0) %>
+    <% const currentDate = Date.now() %> <% currentDate.setHours(0,0,0,0) %>
     <% let testDate = currentDate %> <% testDate.setHours(0,0,0,0) %>
     <!-- prettier-ignore -->
     <% for (let i = 0; i < foundGuest.posts.length; i++) { %>
@@ -33,7 +33,7 @@
     <% const postDate = new Date(foundGuest.posts[i].createdAt)%> 
     <% postDate.setHours(0,0,0,0) %>
     <!-- prettier-ignore -->
-    <% if (postDate.getTime() !==testDate.getTime()) { %>
+    <% if (postDate.getTime() !== testDate.getTime()) { %>
     <% if (postDate.getTime() === currentDate.getTime()) { %>
     <div class="text-center">Today</div>
     <!-- prettier-ignore -->
