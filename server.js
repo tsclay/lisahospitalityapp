@@ -44,6 +44,8 @@ mongoose.connect(
 // Create Express app and set middleware
 const app = express()
 
+// Send moment.js to ejs files so that we can format the timestamps
+// according to user's UTC offset
 app.locals.moment = require('moment')
 
 // Set template engine

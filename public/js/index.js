@@ -1,4 +1,8 @@
+$('html').css('visibility', 'hidden')
+
 $(() => {
+  $('html').css('visibility', 'visible')
+
   $('.navbar-toggler').click(() => {
     $('.offcanvas-collapse').toggleClass('open')
   })
