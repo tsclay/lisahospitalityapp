@@ -1,4 +1,5 @@
 const express = require('express')
+const moment = require('moment')
 const Guest = require('../models/Guest')
 const Post = require('../models/Post')
 const User = require('../models/User')
@@ -19,7 +20,8 @@ main.get('/', isAuthenticated, (req, res) => {
     res.render('app/index.ejs', {
       entries,
       navOn: true,
-      currentUser: req.session.currentUser
+      currentUser: req.session.currentUser,
+      currentDateLocal: moment().local()
     })
   })
 })
