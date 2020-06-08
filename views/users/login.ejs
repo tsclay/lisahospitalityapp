@@ -33,3 +33,9 @@
     </p>
   </div>
 </div>
+<script>
+  $(() => {
+    const userUtcOffset = moment().utcOffset()
+    $('form').attr('action', `/login/${userUtcOffset}`)
+  })
+</script>

@@ -8,7 +8,7 @@ session.get('/login', (req, res) => {
   res.render('users/login.ejs', { navOn: false })
 })
 
-session.post('/login', (req, res) => {
+session.post('/login/:timezone', (req, res) => {
   User.findOne({ email: req.body.email }, (error, foundUser) => {
     if (error) {
       res.send(error)
@@ -16,6 +16,8 @@ session.post('/login', (req, res) => {
       res.send('Email address or password incorrect. Please try again.')
     } else if (bcrypt.compareSync(req.body.password, foundUser.password)) {
       req.session.currentUser = foundUser
+      req.session.timeOffset = req.params.timezone
+      console.log(req.session)
       res.redirect('/app')
     }
   })

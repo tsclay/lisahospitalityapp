@@ -1,8 +1,7 @@
 <nav class="navbar navbar-dark" id="main-navbar">
   <a class="navbar-brand" href="/app">Lisa</a>
-  <span class="navbar-brand" id="test-time"
-    >Welcome, <%= currentUser.name.firstName %> <% const date = new
-    Date().getTimezoneOffset() %> <%= date %>
+  <span class="navbar-brand" id="welcome-user"
+    >Welcome, <%= currentUser.name.firstName %>
   </span>
   <form action="/logout?_method=DELETE" method="POST">
     <button type="submit" class="btn btn-outline-light">
@@ -88,3 +87,11 @@
     </div>
   </div>
 </nav>
+<script>
+  $(() => {
+    let welcome = $('#welcome-user').text()
+    const time = moment().local().format('LLL')
+
+    $('#welcome-user').text(`${welcome} ${time}`)
+  })
+</script>

@@ -20,7 +20,8 @@ main.get('/', isAuthenticated, (req, res) => {
     res.render('app/index.ejs', {
       entries,
       navOn: true,
-      currentUser: req.session.currentUser
+      currentUser: req.session.currentUser,
+      timeOffset: req.session.timeOffset
     })
   })
 })
