@@ -45,8 +45,6 @@ mongoose.connect(
 // Create Express app and set middleware
 const app = express()
 
-app.locals.moment = require('moment')
-
 // Set template engine
 app.use(expressLayouts)
 app.set('view engine', 'ejs')
@@ -65,6 +63,7 @@ app.use(sessionController)
 app.use('/register', userController)
 app.use('/app', guestController)
 
+app.locals.moment = require('moment')
 //==================================================
 // Set the redirect to login or user session when loading main URL
 app.get('/', isAuthenticated, (req, res) => {
