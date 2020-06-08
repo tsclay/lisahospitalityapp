@@ -9,9 +9,7 @@ module.exports = [
     accomodation: {
       property: 'Timberline',
       roomNumber: '4700'
-    },
-    comments:
-      'Called constantly complaining of noise. Security visited 3 times. No noise at each instance.'
+    }
   },
   {
     reservationID: '198276',
@@ -23,8 +21,7 @@ module.exports = [
     accomodation: {
       property: 'Hotel Jay',
       roomNumber: '5504'
-    },
-    comments: 'Smoked in the room; ripped out smoke detector'
+    }
   },
   {
     reservationID: '17459174',
@@ -36,9 +33,7 @@ module.exports = [
     accomodation: {
       property: 'Timberline',
       roomNumber: '4700'
-    },
-    comments:
-      'Called constantly complaining of noise. Security visited 3 times. No noise at each instance.'
+    }
   },
   {
     reservationID: '17459174',
@@ -50,8 +45,7 @@ module.exports = [
     accomodation: {
       property: 'Timberline',
       roomNumber: '4700'
-    },
-    comments: 'Busted hole in wall'
+    }
   },
   {
     reservationID: '17459174',
@@ -63,8 +57,6 @@ module.exports = [
     accomodation: {
       property: 'Timberline',
       roomNumber: '4777'
-    },
-    comments:
-      'Called constantly complaining of noise. Security visited 3 times. No noise at each instance.'
+    }
   }
 ]
