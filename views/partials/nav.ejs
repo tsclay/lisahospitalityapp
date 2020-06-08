@@ -1,7 +1,9 @@
+<% const userTimeZone = moment.tz.guess(true) %>
 <nav class="navbar navbar-dark" id="main-navbar">
   <a class="navbar-brand" href="/app">Lisa</a>
   <span class="navbar-brand"
-    >Welcome, <%= currentUser.name.firstName %> <%= moment().format('LL') %>
+    >Welcome, <%= currentUser.name.firstName %> <%= moment.tz(moment(),
+    userTimeZone).format('LLL') %>
   </span>
   <form action="/logout?_method=DELETE" method="POST">
     <button type="submit" class="btn btn-outline-light">

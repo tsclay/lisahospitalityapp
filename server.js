@@ -5,7 +5,7 @@ const expressLayouts = require('express-ejs-layouts')
 const methodOverride = require('method-override')
 const mongoose = require('mongoose')
 const session = require('express-session')
-const moment = require('moment')
+const moment = require('moment-timezone')
 
 //==================================================
 // Middleware
@@ -45,7 +45,7 @@ mongoose.connect(
 // Create Express app and set middleware
 const app = express()
 
-app.locals.moment = require('moment')
+app.locals.moment = require('moment-timezone')
 
 // Set template engine
 app.use(expressLayouts)
