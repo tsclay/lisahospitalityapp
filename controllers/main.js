@@ -15,7 +15,6 @@ main.get('/seed', (req, res) => {
 })
 
 main.get('/', isAuthenticated, (req, res) => {
-  console.log(req.session.currentUser)
   Guest.find({}, (error, entries) => {
     res.render('app/index.ejs', {
       entries,
