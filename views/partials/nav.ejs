@@ -1,7 +1,8 @@
 <nav class="navbar navbar-dark" id="main-navbar">
   <a class="navbar-brand" href="/app">Lisa</a>
   <span class="navbar-brand"
-    >Welcome, <%= currentUser.name.firstName %> <%= newMoment %>
+    >Welcome, <%= currentUser.name.firstName %> <% const date = new
+    Date().getTimezoneOffset() %> <%= date %>
   </span>
   <form action="/logout?_method=DELETE" method="POST">
     <button type="submit" class="btn btn-outline-light">

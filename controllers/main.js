@@ -16,13 +16,11 @@ main.get('/seed', (req, res) => {
 })
 
 main.get('/', isAuthenticated, (req, res) => {
-  const newMoment = moment().format()
   Guest.find({}, (error, entries) => {
     res.render('app/index.ejs', {
       entries,
       navOn: true,
-      currentUser: req.session.currentUser,
-      newMoment
+      currentUser: req.session.currentUser
     })
   })
 })
