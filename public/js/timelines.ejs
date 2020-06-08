@@ -1,0 +1,19 @@
+<% const currentDate = moment().utcOffset(timeOffset).format('L') %> <% let
+testDate = currentDate %>
+<!-- prettier-ignore -->
+<% for (let i = 0; i < foundGuest.posts.length; i++) { %>
+<!-- prettier-ignore -->
+<% const postDate = moment(foundGuest.posts[i].createdAt).utcOffset(timeOffset).format('L)%>
+<!-- prettier-ignore -->
+<% if (!moment(postDate).isSame(testDate)) { %>
+    <% if (moment(postDate).isSame(currentDate)) { %>
+<div class="text-center">Today</div>
+<!-- prettier-ignore -->
+<% testDate = postDate %> <% } else { %>
+
+<div class="text-center"><%= postDate.format('MMMM M') %></div>
+<% testDate = postDate %>
+<!---->
+<% } %>
+<!---->
+<% } %>

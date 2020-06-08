@@ -49,7 +49,8 @@ main.get('/:id', isAuthenticated, (req, res) => {
     res.render('app/show.ejs', {
       foundGuest,
       navOn: true,
-      currentUser: req.session.currentUser
+      currentUser: req.session.currentUser,
+      timeOffset: req.session.timeOffset
     })
   })
 })

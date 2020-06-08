@@ -16,7 +16,7 @@ session.post('/login/:timezone', (req, res) => {
       res.send('Email address or password incorrect. Please try again.')
     } else if (bcrypt.compareSync(req.body.password, foundUser.password)) {
       req.session.currentUser = foundUser
-      req.session.timeOffset = req.params.timezone
+      req.session.timeOffset = Number(req.params.timezone)
       console.log(req.session)
       res.redirect('/app')
     }

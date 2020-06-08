@@ -22,25 +22,24 @@
   </button>
   <div class="mt-5">
     <!-- prettier-ignore -->
-    <% const months = ['January',
-    'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September',
-    'October', 'November', 'December'] %> 
-    <% const currentDate = Date.now() %> <% currentDate.setHours(0,0,0,0) %>
-    <% let testDate = currentDate %> <% testDate.setHours(0,0,0,0) %>
+    <% const currentDate = moment().utcOffset(timeOffset) %> 
+    <% let testDate = currentDate %>
     <!-- prettier-ignore -->
     <% for (let i = 0; i < foundGuest.posts.length; i++) { %>
     <!-- prettier-ignore -->
-    <% const postDate = new Date(foundGuest.posts[i].createdAt)%> 
-    <% postDate.setHours(0,0,0,0) %>
+    <% const postDate = moment(foundGuest.posts[i].createdAt).utcOffset(timeOffset) %>
     <!-- prettier-ignore -->
-    <% if (postDate.getTime() !== testDate.getTime()) { %>
-    <% if (postDate.getTime() === currentDate.getTime()) { %>
+    <% if (!moment(postDate).isSame(testDate, 'day')) { %>
+      <% if (moment(postDate).isSame(currentDate, 'day')) { %>
     <div class="text-center">Today</div>
     <!-- prettier-ignore -->
-    <% testDate = postDate %> <% } else { %>
-    <% const postMonth = months[postDate.getMonth()] %> 
-    <% const postDateOfMonth = postDate.getDate() %>
-    <div class="text-center"><%= postMonth %> <%= postDateOfMonth %></div>
+    <% testDate = postDate %> 
+    <% } else { %>
+    <div class="text-center">
+      <!--prettier-ignore -->
+      <%=
+      moment(foundGuest.posts[i].createdAt).utcOffset(timeOffset).format('MMMM D') %>
+    </div>
     <% testDate = postDate %>
     <!---->
     <% } %>
@@ -65,11 +64,10 @@
             <%= foundGuest.posts[i].author.name %>
           </h6>
           <h6 class="ml-2">
-            <small class="text-muted"
-              ><%= new
-              Date(foundGuest.posts[i].createdAt).toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/,
-              "$1$3").toLowerCase() %></small
-            >
+            <!-- prettier-ignore-->
+            <small class="text-muted">
+              <%= moment(foundGuest.posts[i].createdAt).utcOffset(timeOffset).format('h:mm a') %>
+              </small>
           </h6>
         </div>
         <p class="card-text">
