@@ -1,4 +1,10 @@
 $(() => {
+  const textThatWas = $('#test-time').text()
+  const localTime = moment().local()
+  $('#test-time').text(
+    `${textThatWas} and here is the timezone offset: ${localTime}`
+  )
+
   $('.navbar-toggler').click(() => {
     $('.offcanvas-collapse').toggleClass('open')
   })
