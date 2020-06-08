@@ -20,8 +20,7 @@ main.get('/', isAuthenticated, (req, res) => {
     res.render('app/index.ejs', {
       entries,
       navOn: true,
-      currentUser: req.session.currentUser,
-      currentDateLocal: moment().local()
+      currentUser: req.session.currentUser
     })
   })
 })
