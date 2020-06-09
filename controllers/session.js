@@ -1,6 +1,8 @@
 const express = require('express')
 const bcrypt = require('bcrypt')
 const User = require('../models/User')
+const Post = require('../models/Post')
+const isAuthenticated = require('../middleware/isAuthenticated')
 
 const session = express.Router()
 
@@ -30,7 +32,19 @@ session.post('/login/:timezone', (req, res) => {
   })
 })
 
-session.delete('/logout', (req, res) => {
+session.put('/app/comment/:guestId/:postId', isAuthenticated, (req, res) => {
+  Post.findByIdAndUpdate(
+    req.params.id,
+    { $set: { content: req.body.content } },
+    (error, post) => {
+      return error
+        ? res.send(error)
+        : res.redirect(`/app/${req.params.guestId}`)
+    }
+  )
+})
+
+session.delete('/logout', isAuthenticated, (req, res) => {
   req.session.destroy(() => {
     res.redirect('/login')
   })
