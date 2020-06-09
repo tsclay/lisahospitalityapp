@@ -8,6 +8,13 @@ session.get('/login', (req, res) => {
   res.render('users/login.ejs', { navOn: false })
 })
 
+session.get('/about', (req, res) => {
+  res.render('app/about.ejs', {
+    navOn: true,
+    currentUser: req.session.currentUser
+  })
+})
+
 session.post('/login/:timezone', (req, res) => {
   User.findOne({ email: req.body.email }, (error, foundUser) => {
     if (error) {
