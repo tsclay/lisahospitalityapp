@@ -44,7 +44,6 @@ main.get('/:id/edit', isAuthenticated, (req, res) => {
 
 main.get('/:id', isAuthenticated, (req, res) => {
   Guest.findById(req.params.id, (error, foundGuest) => {
-    console.log(foundGuest)
     res.render('app/show.ejs', {
       foundGuest,
       navOn: true,
@@ -64,13 +63,10 @@ main.post('/:id/newpost', isAuthenticated, (req, res) => {
   req.body.author = { name: '', id: '' }
   req.body.author.name = `${req.session.currentUser.name.firstName} ${req.session.currentUser.name.lastName}`
   req.body.author.id = req.session.currentUser._id
-  console.log('This is req.body:', req.body)
-  // req.body.author.id = req.params.author
   Post.create(req.body, (error, newPost) => {
     if (error) {
       res.send(error)
     } else {
-      console.log('This is the Post:', newPost)
       Guest.findByIdAndUpdate(
         req.params.id,
         { $push: { posts: newPost.id } },
