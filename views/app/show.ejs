@@ -23,7 +23,7 @@
   <div class="mt-5">
     <!-- prettier-ignore -->
     <% const currentDate = moment().utcOffset(timeOffset) %> 
-    <% let testDate = currentDate %>
+    <% let testDate = moment().utcOffset(timeOffset).subtract(1, 'days') %>
     <!-- prettier-ignore -->
     <% for (let i = 0; i < foundGuest.posts.length; i++) { %>
     <!-- prettier-ignore -->
