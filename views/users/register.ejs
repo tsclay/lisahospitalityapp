@@ -5,19 +5,21 @@
         <div class="card-body">
           <h5 class="card-title text-center">Sign Up</h5>
           <form action="/register" method="POST">
+            <%- include('../partials/regErrors.ejs') %>
             <div class="d-flex flex-row justify-content-between">
               <!-- prettier-ignore -->
-              <fieldset class="form-group">
+              <fieldset class="form-group" id="names-field">
                 <label for="first-name">First Name</label>
-                <input class="form-control" 
-                type="text" 
-                name="name[firstName]"
-                placeholder="First Name" 
-                id="first-name" 
-                value="<%= typeof name != 'undefined' ? name['firstName'] : '' %>"
-                  />
+                <input
+                  class="form-control"
+                  type="text"
+                  name="name[firstName]"
+                  placeholder="First Name"
+                  id="first-name"
+                  value="<%= typeof name != 'undefined' ? name['firstName'] : '' %>"
+                />
               </fieldset>
-              <fieldset class="form-group">
+              <fieldset class="form-group" id="last-name">
                 <label for="last-name">Last Name</label>
                 <input
                   class="form-control"
@@ -29,7 +31,7 @@
                 />
               </fieldset>
             </div>
-            <fieldset class="form-group">
+            <fieldset class="form-group" id="email-field">
               <label for="user-email">Email</label>
               <input
                 class="form-control"
@@ -40,7 +42,7 @@
                 value="<%= typeof email != 'undefined' ? email : '' %>"
               />
             </fieldset>
-            <fieldset class="form-group">
+            <fieldset class="form-group" id="passwords-field">
               <label for="password-login">Password</label>
               <input
                 class="form-control"
@@ -60,7 +62,7 @@
                 type="password"
                 id="confirm-password"
                 placeholder="Confirm Password"
-                value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
+                value="<%= typeof confirmPassword != 'undefined' ? confirmPassword : '' %>"
               />
             </fieldset>
             <button class="btn btn-primary d-block mx-auto" type="submit">
