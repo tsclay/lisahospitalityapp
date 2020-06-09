@@ -23,7 +23,7 @@
   <div class="mt-5">
     <!-- prettier-ignore -->
     <% const currentDate = moment().utcOffset(timeOffset) %> 
-    <% let testDate = moment().utcOffset(timeOffset).subtract(1, 'days') %>
+    <% let testDate = moment().utcOffset(timeOffset).add(1, 'days') %>
     <!-- prettier-ignore -->
     <% for (let i = 0; i < foundGuest.posts.length; i++) { %>
     <!-- prettier-ignore -->
@@ -69,6 +69,14 @@
               <%= moment(foundGuest.posts[i].createdAt).utcOffset(timeOffset).format('h:mm a') %>
               </small>
           </h6>
+          <% if (foundGuest.posts[i].author.id === currentUser._id) { %>
+          <form
+            action="/app/<%= foundGuest.id %>/<%= foundGuest.posts[i].id %>?_method=DELETE"
+            method="POST"
+          >
+            <button class="btn btn-sm btn-secondary">Delete</button>
+          </form>
+          <% } %>
         </div>
         <p class="card-text">
           <%= foundGuest.posts[i].content %>

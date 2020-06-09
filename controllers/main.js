@@ -98,6 +98,27 @@ main.put('/:id', isAuthenticated, (req, res) => {
   })
 })
 
+main.delete('/:guestEntry/:postID', (req, res) => {
+  Guest.findByIdAndUpdate(
+    req.params.guestEntry,
+    {
+      $pull: { posts: req.params.postID }
+    },
+    { safe: true, upsert: true },
+    (error, guest) => {
+      User.findOneAndUpdate(
+        { posts: req.params.postID },
+        { $pull: { posts: req.params.postID } },
+        (error, User) => {
+          Post.findByIdAndDelete(req.params.postID, (error, deleted) => {
+            res.redirect(`/app/${req.params.guestEntry}`)
+          })
+        }
+      )
+    }
+  )
+})
+
 main.delete('/:id', isAuthenticated, (req, res) => {
   Guest.findByIdAndDelete(req.params.id, (error, deleted) => {
     res.redirect('/app')
