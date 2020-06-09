@@ -20,7 +20,7 @@
   <button class="btn btn-primary" onclick="window.location.href='/app'">
     RETURN
   </button>
-  <div class="mt-5">
+  <div class="comment-section mt-5">
     <!-- prettier-ignore -->
     <% const currentDate = moment().utcOffset(timeOffset) %> 
     <% let testDate = moment().utcOffset(timeOffset).add(1, 'days') %>
@@ -85,7 +85,10 @@
           </form>
           <% } %>
         </div>
-        <p class="card-text">
+        <p
+          class="card-text <% if (foundGuest.posts[i].author.id === currentUser._id) { %> your-comments <% } %>"
+          id="<%= i %>"
+        >
           <%= foundGuest.posts[i].content %>
         </p>
       </div>
@@ -122,15 +125,12 @@
     );
 
   $(".edit-comment-button").on("click", (event) => {
-    console.log("This is the edit button", event.currentTarget);
+    $("#cancel-button").click();
+
     const postIdStr = $(event.currentTarget)
       .parent()
       .attr("action")
       .slice(5, -15);
-
-    console.log(
-      editCommentField.attr("action", `/app/comment/${postIdStr}?_method=PUT`)
-    );
 
     const existingComment = $(event.currentTarget)
       .parentsUntil("#this-comment")
@@ -140,10 +140,11 @@
       .children("textarea[name=content]")
       .text(existingComment.text());
 
-    existingComment.replaceWith(editCommentField);
+    existingComment.after(editCommentField);
 
     $("#cancel-button").click((event) => {
       console.log("This is the cancel button", event.currentTarget);
+      $(event.currentTarget).parent().remove();
     });
   });
 </script>
