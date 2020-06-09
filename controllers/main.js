@@ -98,7 +98,7 @@ main.put('/:id', isAuthenticated, (req, res) => {
   })
 })
 
-main.delete('/:guestEntry/:postID', (req, res) => {
+main.delete('/:guestEntry/:postID', isAuthenticated, (req, res) => {
   Guest.findByIdAndUpdate(
     req.params.guestEntry,
     {
