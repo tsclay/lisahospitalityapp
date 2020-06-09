@@ -1,10 +1,10 @@
-<h1>Add page</h1>
+<h1>Create Entry</h1>
 <div class="container">
   <form action="/app" method="POST">
     <div class="form-group">
       <div class="row">
         <div class="col">
-          <label for="last-name">LAST NAME</label>
+          <label for="last-name">Last Name</label>
           <input
             class="form-control"
             type="text"
@@ -14,7 +14,7 @@
         </div>
         <div class="col">
           <div class="form-group">
-            <label for="first-name">FIRST NAME</label>
+            <label for="first-name">First Name</label>
             <input
               class="form-control"
               type="text"
@@ -25,7 +25,7 @@
         </div>
         <div class="col">
           <div class="form-group">
-            <label for="reservation-id">RESERVATION ID</label>
+            <label for="reservation-id">Reservation ID</label>
             <input
               class="form-control"
               type="text"
@@ -34,13 +34,28 @@
             />
           </div>
         </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="row">
         <div class="col">
           <div class="form-group">
-            <label for="recent-stay">RECENT STAY</label>
+            <label for="recent-stay">Arrived</label>
             <input
               class="form-control"
               type="date"
-              name="recentStay"
+              name="recentStay[arrived]"
+              id="recent-stay"
+            />
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label for="recent-stay">Departed</label>
+            <input
+              class="form-control"
+              type="date"
+              name="recentStay[departed]"
               id="recent-stay"
             />
           </div>
@@ -51,7 +66,7 @@
       <div class="row">
         <div class="col">
           <div class="form-group">
-            <label for="accomodation-property">PROPERTY</label>
+            <label for="accomodation-property">Property</label>
             <input
               type="text"
               name="accomodation[property]"
@@ -62,7 +77,7 @@
         </div>
         <div class="col">
           <div class="form-group">
-            <label for="accomodation-room">ROOM NUMBER</label>
+            <label for="accomodation-room">Room Number</label>
             <input
               type="number"
               name="accomodation[roomNumber]"
