@@ -33,10 +33,13 @@ session.post('/login/:timezone', (req, res) => {
 })
 
 session.put('/app/comment/:guestId/:postId', isAuthenticated, (req, res) => {
+  console.log(req.body)
   Post.findByIdAndUpdate(
-    req.params.id,
+    req.params.postId,
     { $set: { content: req.body.content } },
+    { new: true },
     (error, post) => {
+      console.log(post)
       return error
         ? res.send(error)
         : res.redirect(`/app/${req.params.guestId}`)

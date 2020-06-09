@@ -38,14 +38,14 @@
     <div class="text-center">
       <!--prettier-ignore -->
       <%=
-      moment(foundGuest.posts[i].createdAt).utcOffset(timeOffset).format('MMMM D') %>
+      moment(foundGuest.posts[i].createdAt).utcOffset(timeOffset).format('LL') %>
     </div>
     <% testDate = postDate %>
     <!---->
     <% } %>
     <!---->
     <% } %>
-    <div class="card d-flex flex-row pb-3">
+    <div class="card d-flex flex-row pb-3" id="this-comment">
       <div style="width: 8%;">
         <svg
           class="mt-1 ml-1"
@@ -73,8 +73,15 @@
           <form
             action="/app/<%= foundGuest.id %>/<%= foundGuest.posts[i].id %>?_method=DELETE"
             method="POST"
+            id="delete-your-comment"
           >
             <button class="btn btn-sm btn-secondary">Delete</button>
+            <button
+              type="button"
+              class="btn-sm btn btn-secondary edit-comment-button"
+            >
+              Edit
+            </button>
           </form>
           <% } %>
         </div>
@@ -87,7 +94,11 @@
   </div>
   <div class="card">
     <div class="card-body">
-      <form action="/app/<%= foundGuest.id %>/newpost" method="POST">
+      <form
+        action="/app/<%= foundGuest.id %>/newpost"
+        method="POST"
+        id="post-new-comment"
+      >
         <textarea
           name="content"
           id="user-comment"
@@ -100,3 +111,39 @@
     </div>
   </div>
 </div>
+<script>
+  const editCommentField = $("#post-new-comment")
+    .clone()
+    .attr("id", "edit-comment")
+    .append(
+      $(
+        "<button type='button' class='btn btn-sm btn-secondary' id='cancel-button'>"
+      ).text("CANCEL")
+    );
+
+  $(".edit-comment-button").on("click", (event) => {
+    console.log("This is the edit button", event.currentTarget);
+    const postIdStr = $(event.currentTarget)
+      .parent()
+      .attr("action")
+      .slice(5, -15);
+
+    console.log(
+      editCommentField.attr("action", `/app/comment/${postIdStr}?_method=PUT`)
+    );
+
+    const existingComment = $(event.currentTarget)
+      .parentsUntil("#this-comment")
+      .find(".card-text");
+
+    editCommentField
+      .children("textarea[name=content]")
+      .text(existingComment.text());
+
+    existingComment.replaceWith(editCommentField);
+
+    $("#cancel-button").click((event) => {
+      console.log("This is the cancel button", event.currentTarget);
+    });
+  });
+</script>
