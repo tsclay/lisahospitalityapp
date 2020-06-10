@@ -6,10 +6,12 @@ const isAuthenticated = require('../middleware/isAuthenticated')
 
 const session = express.Router()
 
+// Login page
 session.get('/login', (req, res) => {
   res.render('users/login.ejs', { navOn: false })
 })
 
+// About page
 session.get('/about', (req, res) => {
   res.render('app/about.ejs', {
     navOn: true,
@@ -17,6 +19,7 @@ session.get('/about', (req, res) => {
   })
 })
 
+// Login to user session and snag their timezone
 session.post('/login/:timezone', (req, res) => {
   const errors = {}
   User.findOne({ email: req.body.email }, (error, foundUser) => {
@@ -36,6 +39,7 @@ session.post('/login/:timezone', (req, res) => {
   })
 })
 
+// User can update one of their posts
 session.put('/app/comment/:guestId/:postId', isAuthenticated, (req, res) => {
   console.log(req.body)
   Post.findByIdAndUpdate(
@@ -51,6 +55,7 @@ session.put('/app/comment/:guestId/:postId', isAuthenticated, (req, res) => {
   )
 })
 
+// Logout of session
 session.delete('/logout', isAuthenticated, (req, res) => {
   req.session.destroy(() => {
     res.redirect('/login')

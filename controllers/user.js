@@ -4,10 +4,12 @@ const User = require('../models/User')
 
 const user = express.Router()
 
+// New users register page
 user.get('/', (req, res) => {
   res.render('users/register.ejs', { navOn: false })
 })
 
+// Create new user if all the error checks succeed
 user.post('/', (req, res) => {
   // Validate inputs
   const { name, email, password, confirmPassword } = req.body
