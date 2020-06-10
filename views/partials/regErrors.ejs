@@ -1,7 +1,7 @@
 <% if (typeof errors != 'undefined') { %> <% for ( let i = 0; i < errors.length;
 i++ ) { %>
 <div
-  class="alert alert-warning alert-dismissible fade show"
+  class="alert <% if (errors[i].name === 'UserAlreadyExistsError') { %> alert-danger <% } else { %> alert-warning <% } %> alert-dismissible fade show"
   role="alert"
   id="<%= errors[i].name %>"
 >
