@@ -37,7 +37,8 @@ main.get('/:id/edit', isAuthenticated, (req, res) => {
     res.render('app/edit.ejs', {
       foundGuest,
       navOn: true,
-      currentUser: req.session.currentUser
+      currentUser: req.session.currentUser,
+      timeOffset: req.session.timeOffset
     })
   })
 })
@@ -89,6 +90,11 @@ main.post('/:id/newpost', isAuthenticated, (req, res) => {
 })
 
 main.put('/:id', isAuthenticated, (req, res) => {
+  req.body.arrived = new Date(req.body.arrived)
+  req.body.arrived.toISOString()
+  req.body.departed = new Date(req.body.departed)
+  req.body.departed.toISOString()
+
   Guest.findByIdAndUpdate(req.params.id, req.body, (error, updatedGuest) => {
     res.redirect(`/app/${req.params.id}`)
   })
