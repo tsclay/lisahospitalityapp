@@ -1,7 +1,6 @@
-<h1>Show page</h1>
+<h1><%= foundGuest.name.lastName %>, <%= foundGuest.name.firstName %></h1>
 <div class="container">
   <div class="d-flex flex-wrap flex-column justify-content-start">
-    <p><%= foundGuest.name.lastName %>, <%= foundGuest.name.firstName %></p>
     <p>Last stay: <%= foundGuest.recentStay %></p>
     <p>Reservation ID: <%= foundGuest.reservationID %></p>
   </div>
@@ -75,22 +74,30 @@
             method="POST"
             id="delete-your-comment"
           >
-            <button class="btn btn-sm btn-secondary">Delete</button>
-            <button
-              type="button"
-              class="btn-sm btn btn-secondary edit-comment-button"
-            >
-              Edit
-            </button>
+            <div class="ml-3" style="display: none;" role="group">
+              <button
+                type="button"
+                class="btn btn-outline-secondary edit-comment-button"
+                style="padding: 0.08em 0.5em;"
+              >
+                <small><i class="far fa-edit"></i></small>
+              </button>
+              <button
+                type="submit"
+                class="btn btn-outline-secondary ml-2"
+                style="padding: 0.08em 0.5em;"
+              >
+                <span><i class="far fa-trash-alt"></i></span>
+              </button>
+            </div>
           </form>
           <% } %>
         </div>
+        <!-- prettier-ignore-->
         <p
           class="card-text <% if (foundGuest.posts[i].author.id === currentUser._id) { %> your-comments <% } %>"
           id="<%= i %>"
-        >
-          <%= foundGuest.posts[i].content %>
-        </p>
+        ><%= foundGuest.posts[i].content %></p>
       </div>
     </div>
     <% } %>
@@ -114,37 +121,4 @@
     </div>
   </div>
 </div>
-<script>
-  const editCommentField = $("#post-new-comment")
-    .clone()
-    .attr("id", "edit-comment")
-    .append(
-      $(
-        "<button type='button' class='btn btn-sm btn-secondary' id='cancel-button'>"
-      ).text("CANCEL")
-    );
-
-  $(".edit-comment-button").on("click", (event) => {
-    $("#cancel-button").click();
-
-    const postIdStr = $(event.currentTarget)
-      .parent()
-      .attr("action")
-      .slice(5, -15);
-
-    const existingComment = $(event.currentTarget)
-      .parentsUntil("#this-comment")
-      .find(".card-text");
-
-    editCommentField
-      .children("textarea[name=content]")
-      .text(existingComment.text());
-
-    existingComment.after(editCommentField);
-
-    $("#cancel-button").click((event) => {
-      console.log("This is the cancel button", event.currentTarget);
-      $(event.currentTarget).parent().remove();
-    });
-  });
-</script>
+<script src="/js/show_helpers.js"></script>
