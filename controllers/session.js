@@ -18,15 +18,19 @@ session.get('/about', (req, res) => {
 })
 
 session.post('/login/:timezone', (req, res) => {
+  const errors = {}
   User.findOne({ email: req.body.email }, (error, foundUser) => {
     if (error) {
       res.send(error)
-    } else if (!foundUser) {
-      res.send('Email address or password incorrect. Please try again.')
-    } else if (bcrypt.compareSync(req.body.password, foundUser.password)) {
+    } else if (
+      !foundUser ||
+      !bcrypt.compareSync(req.body.password, foundUser.password)
+    ) {
+      errors.msg = 'Email address or password incorrect. Please try again.'
+      res.render('users/login.ejs', { errors, navOn: false })
+    } else {
       req.session.currentUser = foundUser
       req.session.timeOffset = Number(req.params.timezone)
-      console.log(req.session)
       res.redirect('/app')
     }
   })
