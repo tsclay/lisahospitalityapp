@@ -1,7 +1,8 @@
 <div class="card mx-auto mt-5" style="width: 20rem;">
   <img src="/img/lobby.jpg" class="card-img-top" alt="..." />
   <div class="card-body">
-    <%- include('../partials/regSuccess.ejs') %>
+    <%- include('../partials/regSuccess.ejs') %> <%-
+    include('../partials/loginErrors.ejs') %>
     <h5 class="card-title text-center">Login</h5>
     <form action="/login" method="POST">
       <fieldset class="form-group">
@@ -18,7 +19,7 @@
         <label for="password-login">Password</label>
         <input
           class="form-control"
-          type="text"
+          type="password"
           name="password"
           id="password-login"
           placeholder="Password"
