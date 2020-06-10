@@ -37,16 +37,32 @@
             />
           </div>
         </div>
-        <div class="col">
-          <div class="form-group">
-            <label for="recent-stay">RECENT STAY</label>
-            <input
-              class="form-control"
-              type="date"
-              name="recentStay"
-              id="recent-stay"
-              value="<%= foundGuest.recentStay %>"
-            />
+        <div class="form-group">
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <label for="arrived">Arrived</label>
+                <input
+                  class="form-control"
+                  type="date"
+                  name="arrived"
+                  id="arrived"
+                  value="<%= moment(foundGuest.arrived).format('YYYY-MM-DD') %>"
+                />
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <label for="departed">Departed</label>
+                <input
+                  class="form-control"
+                  type="date"
+                  name="departed"
+                  id="departed"
+                  value="<%= moment(foundGuest.departed).format('YYYY-MM-DD') %>"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>

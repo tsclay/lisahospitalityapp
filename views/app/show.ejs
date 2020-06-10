@@ -1,7 +1,10 @@
 <h1><%= foundGuest.name.lastName %>, <%= foundGuest.name.firstName %></h1>
 <div class="container">
   <div class="d-flex flex-wrap flex-column justify-content-start">
-    <p>Last stay: <%= foundGuest.recentStay %></p>
+    <p>
+      Arrived <%= moment(foundGuest.arrived).format('LL') %> and left <%=
+      moment(foundGuest.departed).format('LL') %>
+    </p>
     <p>Reservation ID: <%= foundGuest.reservationID %></p>
   </div>
   <div class="d-flex flex-wrap flex-column justify-content-start">

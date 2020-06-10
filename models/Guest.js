@@ -7,7 +7,8 @@ const guestSchema = new Schema({
     firstName: { type: String, required: true },
     lastName: { type: String, required: true }
   },
-  recentStay: { type: String, required: true },
+  arrived: { type: Date, required: true, default: Date.now },
+  departed: { type: Date, required: true },
   reservationID: String,
   accomodation: {
     property: String || null,
