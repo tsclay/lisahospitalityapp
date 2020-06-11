@@ -2,9 +2,9 @@
 
 ## About
 
-Lisa is a CRUD application designed for entities in the hospitality industry to share their experiences with their less-than-savory guests.
+Lisa is an Express application designed for entities in the hospitality industry to share their experiences with their less-than-savory guests. Staff members can make accounts, create forums for a certain guest, and comment their experiences in the forums.
 
-The impetus for this app is not the negative experience borne of subpar customer service, but of self-induced negativity from the guest. Colloquially, these kinds of guests are described as "Karens". This app will help in communicating and discussing these negative experiences.
+The impetus for this app is not the negative experience borne of subpar customer service, but of self-induced negativity from the guest (the guest that looks for any reason to have a negative experience and lash out at staff). Having worked in hospitality, this is an app I wish I had while on the job.
 
 ## Cool features
 
@@ -16,7 +16,7 @@ Create user accounts and comment on these entries. Comments include user's name,
 
 The app is a fullstack app running on Node.js with MongoDB as the database. Express.js and Mongoose.js are used to organize the code and thought process.
 
-Datetime display is happily powered by Moment.js because the native Date object in JS sucks. (╯°_°）╯︵ ┻━┻
+Datetime display is happily powered by Moment.js because the native Date object in JS => (╯°_°）╯︵ ┻━┻
 
 Bootstrap and some jQuery helpers are used for CSS. 
 
@@ -25,3 +25,5 @@ Bootstrap and some jQuery helpers are used for CSS.
 Give users the ability to upload an image to use as their profile picture.
 
 Allow users to reply to other users' comments.
+
+Create admin account for managers/directors and specifying what permissions non-admins have.
