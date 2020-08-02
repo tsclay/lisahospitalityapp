@@ -1,5 +1,7 @@
 # lisa
 
+See the deployed version of the app at https://lisahospitalitysolutions.herokuapp.com/login. Use **demo@me.com** for the username and **password123** for the password.
+
 ## About
 
 Lisa is an Express application designed for entities in the hospitality industry to share their experiences with their less-than-savory guests. Staff members can make accounts, create forums for a certain guest, and comment their experiences in the forums.
