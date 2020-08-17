@@ -1,5 +1,7 @@
 # lisa
 
+See the deployed version of the app at https://lisahospitalitysolutions.herokuapp.com/login. Use **demo@me.com** for the username and **password123** for the password.
+
 ## About
 
 Lisa is an Express application designed for entities in the hospitality industry to share their experiences with their less-than-savory guests. Staff members can make accounts, create forums for a certain guest, and comment their experiences in the forums.
@@ -8,17 +10,19 @@ The impetus for this app is not the negative experience borne of subpar customer
 
 ## Cool features
 
-Create, update, and delete entries relating to a guest who is also stored in the PMS used by the resort/hotel.
+Create, update, and delete entries relating to a guest who is also stored in the PMS used by the resort/hotel. Note, this app does not connect to any third-party API containing guest data.
 
 Create user accounts and comment on these entries. Comments include user's name, comment, an image, and timestamps. Users can edit and delete their comments as well!
 
-## Technologies
+## Tech
 
-The app is a fullstack app running on Node.js with MongoDB as the database. Express.js and Mongoose.js are used to organize the code and thought process.
+- Node.js using Express and Mongoose
+- MongoDB
+- EJS view engine
+- Moment.js for datetime
+- Bootstrap
+- jQuery
 
-Datetime display is happily powered by Moment.js because the native Date object in JS => (╯°_°）╯︵ ┻━┻
-
-Bootstrap and some jQuery helpers are used for CSS. 
 
 ## What's next
 
@@ -26,4 +30,6 @@ Give users the ability to upload an image to use as their profile picture.
 
 Allow users to reply to other users' comments.
 
-Create admin account for managers/directors and specifying what permissions non-admins have.
+Add permissions to regular users and create superusers that have the most broad permissions.
+
+Migrate front-end to React or Vue
