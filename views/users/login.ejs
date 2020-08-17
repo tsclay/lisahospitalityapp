@@ -28,6 +28,13 @@
       <button class="btn btn-primary d-block mx-auto" type="submit">
         LOGIN
       </button>
+      <button
+        id="demo-mode"
+        class="btn btn-primary d-block mx-auto mt-2"
+        type="button"
+      >
+        Demo Mode
+      </button>
     </form>
     <p class="card-text text-center mt-4">
       <span>Need an account?</span
@@ -40,5 +47,11 @@
   $(() => {
     const userUtcOffset = moment().utcOffset();
     $("form").attr("action", `/login/${userUtcOffset}`);
+
+    $("#demo-mode").on("click", () => {
+      $("input[name=email]").val("demo@me.com");
+      $("input[name=password").val("password123");
+      $("button[type=submit]").click();
+    });
   });
 </script>
