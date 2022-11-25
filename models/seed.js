@@ -5,7 +5,8 @@ module.exports = [
       lastName: 'Smith',
       firstName: 'Jane'
     },
-    recentStay: '2020-06-01',
+    arrived: '2020-06-01T00:00:00.000Z',
+    departed: '2020-06-03T00:00:00.000Z',
     accomodation: {
       property: 'Timberline',
       roomNumber: '4700'
@@ -17,7 +18,8 @@ module.exports = [
       lastName: 'Case',
       firstName: 'Justin'
     },
-    recentStay: '2020-06-11',
+    arrived: '2020-06-01T00:00:00.000Z',
+    departed: '2020-06-03T00:00:00.000Z',
     accomodation: {
       property: 'Hotel Jay',
       roomNumber: '5504'
@@ -29,7 +31,8 @@ module.exports = [
       lastName: 'Klein',
       firstName: 'Amos'
     },
-    recentStay: '2019-06-01',
+    arrived: '2020-06-01T00:00:00.000Z',
+    departed: '2020-06-03T00:00:00.000Z',
     accomodation: {
       property: 'Timberline',
       roomNumber: '4700'
@@ -41,7 +44,8 @@ module.exports = [
       lastName: 'Price',
       firstName: 'Patrick'
     },
-    recentStay: '2018-06-01',
+    arrived: '2020-06-01T00:00:00.000Z',
+    departed: '2020-06-03T00:00:00.000Z',
     accomodation: {
       property: 'Timberline',
       roomNumber: '4700'
@@ -53,7 +57,8 @@ module.exports = [
       lastName: 'Jones',
       firstName: 'Kevin'
     },
-    recentStay: '2020-01-01',
+    arrived: '2020-06-01T00:00:00.000Z',
+    departed: '2020-06-03T00:00:00.000Z',
     accomodation: {
       property: 'Timberline',
       roomNumber: '4777'
