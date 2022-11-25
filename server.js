@@ -29,12 +29,7 @@ const { MONGODB_URI } = process.env
 // Connect to MongoDB
 mongoose.connect(
   MONGODB_URI,
-  {
-    useCreateIndex: true,
-    useFindAndModify: false,
-    useUnifiedTopology: true,
-    useNewUrlParser: true
-  },
+  {},
   () => {
     console.log(`Connected to MONGODB @ ${MONGODB_URI}`)
   }
